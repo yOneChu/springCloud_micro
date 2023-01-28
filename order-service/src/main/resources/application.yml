@@ -3,25 +3,19 @@ server:
 
 spring:
   application:
-    name: catalog-service
+    name: order-service
   datasource:
     url: jdbc:postgresql://localhost:5432/basic
     username: postgres
     password: wcadmin
     driver-class-name: org.postgresql.Driver
-    # DB초기화
-    # data: classpath*:initdata/${database}/data.sql
-   # initialization-mode: always
   jpa:
-    #defer-datasource-initialization: true
     hibernate:
-      ddl-auto: update # create-drop
+      ddl-auto: create
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-     #   generate-ddl: true
-
 
 eureka:
   instance:
@@ -35,4 +29,4 @@ eureka:
 
 logging:
   level:
-    com.example.catalogservice: DEBUG
+    com.example.orderservice: DEBUG
