@@ -3,19 +3,24 @@ server:
 
 spring:
   application:
-    name: user-service
+    name: catalog-service
   datasource:
     url: jdbc:postgresql://localhost:5432/basic
     username: postgres
     password: wcadmin
     driver-class-name: org.postgresql.Driver
+    # DB초기화
+   # data: classpath*:initdata/${database}/data.sql
+   # initialization-mode: always
   jpa:
+    #defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
         show_sql: true
         format_sql: true
+     #   generate-ddl: true
 
 
 eureka:
@@ -28,6 +33,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-
-greeting:
-  message: Welcome to the Simple E-commerce.
+logging:
+  level:
+    com.example.catalogservice: DEBUG
