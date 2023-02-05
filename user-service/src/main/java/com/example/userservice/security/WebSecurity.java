@@ -45,6 +45,5 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //사요자 username, password 검색해 온 다음 패스워드를 변경경
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
-
     }
 }
