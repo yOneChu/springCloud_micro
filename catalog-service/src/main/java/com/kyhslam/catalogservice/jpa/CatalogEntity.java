@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name = "catalog")
 public class CatalogEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 120, unique = true)
