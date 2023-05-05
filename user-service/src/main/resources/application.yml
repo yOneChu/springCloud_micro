@@ -19,6 +19,7 @@ spring:
 
 eureka:
   instance:
+    hostname: localhost
     instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
   client:
     fetch-registry: true
@@ -30,6 +31,13 @@ greeting:
   message: Welcome to the Simple User-service.
 
 
-token:
-  expiration_time: 86400000
-  secret: user_token
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
+
+
+#token:
+#  expiration_time: 86400000
+#  secret: user_token
