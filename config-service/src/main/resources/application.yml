@@ -4,8 +4,15 @@ server:
 spring:
   application:
     name: config-service
+  profiles:
+    active: dev
   cloud:
     config:
       server:
+        native:
+          search-locations: file:C:\\\Dev\Spring_Cloud_Work\native-file-repo
         git:
-          uri: file:C:\\\Dev\Spring_Cloud_Work\git-local-repo
+          uri: https://github.com/yOneChu/spring-cloud-config-home.git
+#          uri: file:C:\\\Dev\Spring_Cloud_Work\git-local-repo
+#          username: [your username]
+#          password: [your password]
