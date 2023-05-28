@@ -35,6 +35,10 @@ eureka:
 greeting:
   message: Welcome to the Simple User-service.
 
+logging:
+  level:
+    com.kyhslam.userservice.client: DEBUG
+
 
 management:
   endpoints:
