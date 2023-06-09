@@ -2,6 +2,7 @@ package com.kyhslam.orderservice.controller;
 
 import com.kyhslam.orderservice.dto.OrderDto;
 import com.kyhslam.orderservice.jpa.OrderEntity;
+import com.kyhslam.orderservice.messagequeue.KafkaProducer;
 import com.kyhslam.orderservice.service.OrderService;
 import com.kyhslam.orderservice.vo.RequestOrder;
 import com.kyhslam.orderservice.vo.ResponseOrder;
@@ -21,11 +22,13 @@ import java.util.List;
 public class OrderController {
     Environment env;
     OrderService orderService;
+    KafkaProducer kafkaProducer;
 
     @Autowired
-    public OrderController(Environment env, OrderService orderService) {
+    public OrderController(Environment env, OrderService orderService, KafkaProducer kafkaProducer) {
         this.env = env;
         this.orderService = orderService;
+        this.kafkaProducer = kafkaProducer;
     }
 
     @GetMapping("/health_check")
@@ -45,6 +48,9 @@ public class OrderController {
         OrderDto createdOrder = orderService.createOrder(orderDto);
 
         ResponseOrder responseOrder = mapper.map(createdOrder, ResponseOrder.class);
+
+        /* send this order to the kafka */
+        kafkaProducer.send("example-catalog-topic", orderDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(responseOrder);
     }
