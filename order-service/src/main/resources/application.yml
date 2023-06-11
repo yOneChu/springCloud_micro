@@ -5,10 +5,14 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/basic
-    username: postgres
-    password: wcadmin
-    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/basic
+#    username: postgres
+#    password: wcadmin
+#    driver-class-name: org.postgresql.Driver
+    url: jdbc:mariadb://localhost:3306/mydb
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: test1375
   jpa:
     hibernate:
       ddl-auto: update
